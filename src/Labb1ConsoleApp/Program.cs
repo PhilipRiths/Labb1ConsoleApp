@@ -20,12 +20,18 @@ namespace Labb1ConsoleApp
         public void Menu()
         {
             HelperClass helperclass = new HelperClass();
-            Console.WriteLine("Enter names seperated by comma (e.g Maria, Peter, Lisa): ");
-            var userResponse = helperclass.GetInputFromUser();
-            var checkUserInputNotEmpty = helperclass.CheckUserInputNotEmpty(userResponse);
-            var userNames = helperclass.CreateArrayOfPeople(checkUserInputNotEmpty);
-            helperclass.RespondToUser(userNames);
+           helperclass.CheckAndValidateInput();
+            
         }
+
+        //public void CheckAndValidateInput()
+        //{
+        //    HelperClass helperclass = new HelperClass();
+        //    var userResponse = helperclass.GetInputFromUser();
+        //    var checkUserInputNotEmpty = helperclass.CheckUserInputNotEmpty(userResponse);
+        //    var userNames = helperclass.CreateArrayOfPeople(checkUserInputNotEmpty);
+        //    helperclass.RespondToUser(userNames);
+        //}
 
     }
 }

@@ -20,18 +20,22 @@ namespace Labb1ConsoleApp.Helpers
 
                 return userInput;
             UserInputEmptyMsg();
+            
             return userInput;
         }
-
+        
         public void UserInputEmptyMsg()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("This list don't contain any names");
             Console.ResetColor();
+            CheckAndValidateInput();
+
         }
         public string[] CreateArrayOfPeople(string response)
         {
-            string[] createArrayOfPeople = response.Split(',').Select(responseValue => responseValue.Trim()).ToArray();
+         
+           string[] createArrayOfPeople = response.Split(',').Select(responseValue => responseValue.Trim()).ToArray();
             return createArrayOfPeople;
         }
 
@@ -40,22 +44,33 @@ namespace Labb1ConsoleApp.Helpers
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("A person can only have between 2 and 9 letters");
             Console.ResetColor();
+            CheckAndValidateInput();
+
         }
         public void RespondToUser(string[] peopleArray)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             foreach (string people in peopleArray)
             {
-                if (people.Length < 2 || people.Length > 9)
+                if (people.Length <= 2 || people.Length >= 9)
                 {
                     RespondToUserOutOfRange();
                 }
+               
                 else
                 {
                     Console.WriteLine($"***SUPER-{people.ToUpper()}***");
                 }
             }
             Console.ResetColor();
+        }
+        public void CheckAndValidateInput()
+        {
+            Console.WriteLine("Enter names seperated by comma (e.g Maria, Peter, Lisa): ");
+            var userResponse = GetInputFromUser();
+            var checkUserInputNotEmpty = CheckUserInputNotEmpty(userResponse);
+            var userNames = CreateArrayOfPeople(checkUserInputNotEmpty);
+           RespondToUser(userNames);
         }
     }
 }
